@@ -9,6 +9,7 @@ export const defaultContextValue: TextLabelingProps = {
   selectedLabel: null,
   selectLabel: () => {},
   addTextLabel: () => {},
+  setLabeling: () => {},
 };
 
 export const TextContext =
