@@ -11,6 +11,5 @@ export const defaultContextValue: TextLabelingProps = {
   addTextLabel: () => {},
 };
 
-// Экспортируем только контекст
 export const TextContext =
   createContext<TextLabelingProps>(defaultContextValue);
