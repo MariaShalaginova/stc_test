@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { TextLabel } from "../Types/types";
 import { MOCK_LABELS, MOCK_TEXT } from "../mock";
 import { TextContext } from "./TextContext";
@@ -11,36 +11,39 @@ export const ContextProvider: React.FC<{
   const [labeling, setLabeling] = useState<TextLabel[]>([]);
   const [selectedLabel, setSelectedLabel] = useState<string | null>(null);
 
-  const selectLabel = (label: string) => {
+  const selectLabel = useCallback((label: string) => {
     setSelectedLabel(label);
-  };
+  }, []);
 
-  const addTextLabel = (start: number, end: number, selectedText: string) => {
-    if (!selectedLabel) return;
+  const addTextLabel = useCallback(
+    (start: number, end: number, selectedText: string) => {
+      if (!selectedLabel) return;
 
-    setLabeling((prev) => [
-      ...prev,
-      {
-        start,
-        end,
-        label: selectedLabel,
-        text: selectedText,
-      },
-    ]);
-  };
-
-  return (
-    <TextContext.Provider
-      value={{
-        text,
-        labels: MOCK_LABELS,
-        labeling,
-        selectedLabel,
-        selectLabel,
-        addTextLabel,
-      }}
-    >
-      {children}
-    </TextContext.Provider>
+      setLabeling((prev) => [
+        ...prev,
+        {
+          start,
+          end,
+          label: selectedLabel,
+          text: selectedText,
+        },
+      ]);
+    },
+    [selectedLabel]
   );
+
+  const value = useMemo(
+    () => ({
+      text,
+      labeling,
+      labels: MOCK_LABELS,
+      selectedLabel,
+      selectLabel,
+      addTextLabel,
+      setLabeling,
+    }),
+    [text, labeling, selectedLabel, selectLabel, addTextLabel]
+  );
+
+  return <TextContext.Provider value={value}>{children}</TextContext.Provider>;
 };
