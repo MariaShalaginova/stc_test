@@ -1,0 +1,20 @@
+.container {
+  width: 70%;
+
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
+
+  &__hr {
+    height: 1px;
+    background-color: black;
+    transform: scaleY(0.5);
+    transform-origin: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  &__text {
+    white-space: pre-wrap;
+  }
+}
