@@ -1,0 +1,30 @@
+.container {
+  width: 30%;
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
+  &__hr {
+    height: 1px;
+    background-color: black;
+    transform: scaleY(0.5);
+    transform-origin: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  &__marks {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+
+    &_square {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .clicked {
+    background-color: lightgrey;
+  }
+}
