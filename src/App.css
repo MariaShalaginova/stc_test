@@ -1,0 +1,16 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 2rem;
+  width: 50%;
+}
+
+.container {
+  width: 100%;
+  height: fit-content;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
